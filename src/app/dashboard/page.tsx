@@ -134,59 +134,89 @@ export default function GovernmentDashboard() {
         </div>
       </div>
 
+      {/* ROW 4: Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="card-hover transition-all duration-300">
+          <SkillTrackAreaChart
+            data={enrollmentData}
+            title="TRAINING ENROLLMENTS"
+            description="(Last 6 Months)"
+            color="#f97316"
+          />
+        </div>
+        <div className="card-hover transition-all duration-300">
+          <SkillTrackAreaChart
+            data={placementData}
+            title="PLACEMENT TRENDS"
+            description="(Last 6 Months)"
+            color="#10b981"
+          />
+        </div>
+      </div>
+
       {/* ROW 4: 4 Bar Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <HorizontalBarChart
-          data={providerData}
-          dataKey="score"
-          nameKey="provider"
-          title="Top Providers"
-          description="by Employment Rate"
-          color="#3b82f6"
-          showPercentage={true}
-        />
-        <HorizontalBarChart
-          data={courseData}
-          dataKey="score"
-          nameKey="course"
-          title="Top Courses"
-          description="by Placement Rate"
-          color="#10b981"
-          showPercentage={true}
-        />
-        <HorizontalBarChart
-          data={nonPlacementData}
-          dataKey="percentage"
-          nameKey="reason"
-          title="Non-Placement Reasons"
-          description="Top 5 factors"
-          color="#f59e0b"
-          showPercentage={true}
-        />
-        <HorizontalBarChart
-          data={attritionData}
-          dataKey="percentage"
-          nameKey="reason"
-          title="Attrition Reasons"
-          description="Top 5 factors"
-          color="#ef4444"
-          showPercentage={true}
-        />
+        <div className="card-hover transition-all duration-300 h-full">
+          <HorizontalBarChart
+            data={providerData}
+            dataKey="score"
+            nameKey="provider"
+            title="Top Providers"
+            description="by Employment Rate"
+            color="#3b82f6"
+            showPercentage={true}
+          />
+        </div>
+        <div className="card-hover transition-all duration-300 h-full">
+          <HorizontalBarChart
+            data={courseData}
+            dataKey="score"
+            nameKey="course"
+            title="Top Courses"
+            description="by Placement Rate"
+            color="#10b981"
+            showPercentage={true}
+          />
+        </div>
+        <div className="card-hover transition-all duration-300 h-full">
+          <HorizontalBarChart
+            data={nonPlacementData}
+            dataKey="percentage"
+            nameKey="reason"
+            title="Non-Placement Reasons"
+            description="Top 5 factors"
+            color="#f59e0b"
+            showPercentage={true}
+          />
+        </div>
+        <div className="card-hover transition-all duration-300 h-full">
+          <HorizontalBarChart
+            data={attritionData}
+            dataKey="percentage"
+            nameKey="reason"
+            title="Attrition Reasons"
+            description="Top 5 factors"
+            color="#ef4444"
+            showPercentage={true}
+          />
+        </div>
       </div>
 
       {/* ROW 5: Salary, Skills, AI */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <SalaryProgressionChart
-          data={salaryData}
-          title="SALARY PROGRESSION"
-          description="(Median Salary)"
-        />
+        <div className="card-hover transition-all duration-300 h-full">
+          <SalaryProgressionChart
+            data={salaryData}
+            title="SALARY PROGRESSION"
+            description="(Median Salary)"
+          />
+        </div>
         
-        <div className="h-full">
+        <div className="card-hover transition-all duration-300 h-full">
           <SkillGapChart data={skillGaps} />
         </div>
 
-        <Card className="shadow-sm border-border/50 border-t-4 border-t-indigo-600 bg-gradient-to-b from-indigo-50/50 to-white">
+        <Card className="shadow-sm border-border/50 border-t-4 border-t-indigo-600 bg-gradient-to-b from-indigo-50/50 to-white card-hover transition-all duration-300">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-bold flex items-center gap-2 text-indigo-900">
               <Lightbulb className="h-4 w-4 text-indigo-600" />
