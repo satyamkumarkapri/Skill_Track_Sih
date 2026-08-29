@@ -234,19 +234,20 @@ export function KPICard({ label, value, change, changeLabel, icon, trend, delay 
   const Icon = iconMap[icon] || BarChart3;
 
   return (
-    <Card>
-      <CardContent className="p-4">
+    <Card className="border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 card-hover bg-white/60 backdrop-blur-md overflow-hidden relative group">
+      <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl -mr-8 -mt-8 transition-transform group-hover:scale-150" />
+      <CardContent className="p-5 relative z-10">
         <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+          <div className="space-y-1">
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               {label}
             </p>
-            <p className="text-2xl font-bold text-foreground tracking-tight">
+            <p className="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
               {value}
             </p>
           </div>
-          <div className="rounded-md bg-muted p-2">
-            <Icon className="h-4 w-4 text-muted-foreground" />
+          <div className="rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 p-3 shadow-inner border border-white">
+            <Icon className="h-5 w-5 text-primary" />
           </div>
         </div>
         {change !== undefined && (

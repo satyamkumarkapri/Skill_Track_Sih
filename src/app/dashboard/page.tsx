@@ -136,7 +136,7 @@ export default function GovernmentDashboard() {
 
       {/* ROW 4: Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="card-hover transition-all duration-300">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300">
           <SkillTrackAreaChart
             data={enrollmentData}
             title="TRAINING ENROLLMENTS"
@@ -144,7 +144,7 @@ export default function GovernmentDashboard() {
             color="#f97316"
           />
         </div>
-        <div className="card-hover transition-all duration-300">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300">
           <SkillTrackAreaChart
             data={placementData}
             title="PLACEMENT TRENDS"
@@ -156,7 +156,7 @@ export default function GovernmentDashboard() {
 
       {/* ROW 4: 4 Bar Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <HorizontalBarChart
             data={providerData}
             dataKey="score"
@@ -167,7 +167,7 @@ export default function GovernmentDashboard() {
             showPercentage={true}
           />
         </div>
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <HorizontalBarChart
             data={courseData}
             dataKey="score"
@@ -178,7 +178,7 @@ export default function GovernmentDashboard() {
             showPercentage={true}
           />
         </div>
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <HorizontalBarChart
             data={nonPlacementData}
             dataKey="percentage"
@@ -189,7 +189,7 @@ export default function GovernmentDashboard() {
             showPercentage={true}
           />
         </div>
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <HorizontalBarChart
             data={attritionData}
             dataKey="percentage"
@@ -204,7 +204,7 @@ export default function GovernmentDashboard() {
 
       {/* ROW 5: Salary, Skills, AI */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <SalaryProgressionChart
             data={salaryData}
             title="SALARY PROGRESSION"
@@ -212,7 +212,7 @@ export default function GovernmentDashboard() {
           />
         </div>
         
-        <div className="card-hover transition-all duration-300 h-full">
+        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300 h-full">
           <SkillGapChart data={skillGaps} />
         </div>
 
