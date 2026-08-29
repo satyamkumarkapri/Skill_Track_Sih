@@ -122,6 +122,10 @@
 
 /* ===== Base Styles ===== */
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   border-color: hsl(var(--border));
 }

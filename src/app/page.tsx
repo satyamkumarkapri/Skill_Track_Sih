@@ -700,10 +700,10 @@ function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Legal & Support</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Data Security</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contact Support</Link></li>
+              <li><Link href="#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#privacy" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="#privacy" className="hover:text-white transition-colors">Data Security</Link></li>
+              <li><a href="mailto:support@skilltrack.gov.in" className="hover:text-white transition-colors">Contact Support</a></li>
             </ul>
           </div>
         </div>
