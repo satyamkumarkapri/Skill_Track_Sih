@@ -194,10 +194,10 @@ function ProblemSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-sm font-semibold text-saffron uppercase tracking-wider mb-3">The Problem</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             The Missing Link in Skill Development
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-slate-600">
             Current systems capture enrolment and certification, but fail to provide predictive insights, 
             track long-term employment, or measure true livelihood outcomes over time.
           </p>
@@ -209,12 +209,12 @@ function ProblemSection() {
             return (
               <div
                 key={i}
-                className="flex items-start gap-4 p-6 rounded-xl bg-red-50/50 border border-red-100 hover:shadow-sm transition-all"
+                className="flex items-start gap-4 p-6 rounded-xl bg-red-50 border border-red-100 hover:shadow-sm transition-all"
               >
                 <div className="p-2 rounded-lg bg-red-100 flex-shrink-0">
                   <Icon className="h-5 w-5 text-red-600" />
                 </div>
-                <p className="text-sm text-foreground leading-relaxed font-medium">{problem.text}</p>
+                <p className="text-sm text-slate-900 leading-relaxed font-medium">{problem.text}</p>
               </div>
             );
           })}
@@ -236,14 +236,14 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-background">
+    <section id="how-it-works" className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-sm font-semibold text-india-green uppercase tracking-wider mb-3">How It Works</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             From Training to Livelihood
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-slate-600">
             A complete longitudinal outcome tracking system that follows the trainee journey.
           </p>
         </div>
@@ -254,18 +254,18 @@ function HowItWorksSection() {
             return (
               <div
                 key={i}
-                className="relative p-6 rounded-xl bg-card border border-border hover:border-primary/20 hover:shadow-md transition-all group"
+                className="relative p-6 rounded-xl bg-white border border-slate-200 hover:border-primary/20 hover:shadow-md transition-all group"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-xs font-bold text-muted-foreground bg-muted rounded-full px-2 py-0.5">
+                  <span className="text-xs font-bold text-slate-500 bg-slate-100 rounded-full px-2 py-0.5">
                     Step {i + 1}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-foreground mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                <h3 className="text-base font-semibold text-slate-900 mb-2">{step.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
               </div>
             );
           })}
@@ -293,7 +293,7 @@ function FeaturesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Platform Features</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             Comprehensive Impact Intelligence
           </h2>
         </div>
@@ -302,12 +302,12 @@ function FeaturesSection() {
           {features.map((feat, i) => {
             const Icon = feat.icon;
             return (
-              <div key={i} className="p-5 rounded-xl border border-border hover:border-primary/20 hover:shadow-sm transition-all">
+              <div key={i} className="p-5 rounded-xl border border-slate-200 hover:border-primary/20 hover:shadow-sm transition-all">
                 <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center mb-4">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-sm font-semibold text-foreground mb-1.5">{feat.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{feat.desc}</p>
+                <h3 className="text-sm font-semibold text-slate-900 mb-1.5">{feat.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
               </div>
             );
           })}
@@ -328,11 +328,11 @@ function RolesSection() {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-sm font-semibold text-saffron uppercase tracking-wider mb-3">Role-Based Ecosystem</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             Every Stakeholder Connected
           </h2>
         </div>
@@ -341,12 +341,12 @@ function RolesSection() {
           {roles.map((role, i) => {
             const Icon = role.icon;
             return (
-              <div key={i} className="p-5 rounded-xl bg-card border border-border text-center">
+              <div key={i} className="p-5 rounded-xl bg-white border border-slate-200 text-center shadow-sm">
                 <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center mx-auto mb-3", role.color)}>
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-sm font-semibold text-foreground mb-1">{role.title}</h3>
-                <p className="text-xs text-muted-foreground">{role.desc}</p>
+                <h3 className="text-sm font-semibold text-slate-900 mb-1">{role.title}</h3>
+                <p className="text-xs text-slate-600">{role.desc}</p>
               </div>
             );
           })}
@@ -385,10 +385,10 @@ function PrivacySection() {
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="flex-1">
               <p className="text-sm font-semibold text-india-green uppercase tracking-wider mb-3">Privacy & Consent</p>
-              <h2 className="text-3xl font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Privacy-Conscious by Design
               </h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-slate-600 mb-6 leading-relaxed">
                 SkillTrack is built with a consent-first approach. Every trainee has full control over
                 their data, with granular consent for each tracking purpose.
               </p>
@@ -403,7 +403,7 @@ function PrivacySection() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-india-green flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-foreground">{item}</span>
+                    <span className="text-sm text-slate-900">{item}</span>
                   </div>
                 ))}
               </div>
@@ -416,7 +416,7 @@ function PrivacySection() {
                 </div>
                 {consents.map((c, i) => (
                   <div key={i} className="flex items-center justify-between py-3 border-b border-border/50 last:border-0">
-                    <span className="text-sm text-foreground">{c.purpose}</span>
+                    <span className="text-sm text-slate-900">{c.purpose}</span>
                     <div 
                       onClick={() => toggleConsent(i)}
                       className={cn(
