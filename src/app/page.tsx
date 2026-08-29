@@ -512,31 +512,31 @@ function PrivacySection() {
 // ===== CTA SECTION =====
 function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden text-white border-t border-slate-900 bg-slate-950">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-950 via-slate-950 to-slate-950 opacity-80 z-0" />
+    <section className="py-24 relative overflow-hidden text-slate-900 border-t border-slate-100 bg-white">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-50 via-white to-white opacity-80 z-0" />
       
       {/* Decorative Glows */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-orange-600/20 rounded-full blur-[120px] animate-pulse-subtle z-0" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/20 rounded-full blur-[120px] animate-pulse-subtle z-0" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse-subtle z-0" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse-subtle z-0" style={{ animationDelay: '2s' }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 className="text-4xl sm:text-6xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-xl">
+        <h2 className="text-4xl sm:text-6xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-transparent drop-shadow-sm">
           Join the SkillTrack Network
         </h2>
-        <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-sm">
+        <p className="text-xl sm:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
           Register or log in to manage your skilling journey, verify employment, and track outcomes on the official portal.
         </p>
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
           <Link
             href="/login"
-            className="inline-flex items-center justify-center gap-2 h-14 px-10 bg-gradient-to-r from-saffron to-orange-600 text-white text-lg font-bold rounded-xl hover:from-saffron/90 hover:to-orange-500 transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:shadow-[0_0_40px_rgba(249,115,22,0.6)] hover:-translate-y-1"
+            className="inline-flex items-center justify-center gap-2 h-14 px-10 bg-gradient-to-r from-saffron to-orange-600 text-white text-lg font-bold rounded-xl hover:from-saffron/90 hover:to-orange-500 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] hover:-translate-y-1"
           >
             Login to Dashboard
             <ArrowRight className="h-6 w-6" />
           </Link>
           <Link
             href="/login?tab=register"
-            className="inline-flex items-center justify-center gap-2 h-14 px-10 bg-white/5 backdrop-blur-md text-white text-lg font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/30 shadow-lg hover:-translate-y-1"
+            className="inline-flex items-center justify-center gap-2 h-14 px-10 bg-white text-slate-700 text-lg font-semibold rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1"
           >
             Register Now
           </Link>
