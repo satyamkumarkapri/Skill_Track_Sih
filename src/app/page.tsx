@@ -29,6 +29,7 @@ import {
 import { cn } from "@/lib/utils";
 import { DemoBadge } from "@/components/ui";
 import { toast } from "sonner";
+import { getMongoDBKPIs } from "@/actions/analytics";
 
 // ===== LANDING HEADER =====
 function LandingHeader() {
@@ -117,6 +118,37 @@ function HeroBackgroundCarousel() {
 
 // ===== HERO SECTION =====
 function HeroSection() {
+  const [stats, setStats] = useState([
+    { label: "Trainees Tracked", value: "..." },
+    { label: "Employment Rate", value: "..." },
+    { label: "6-Month Retention", value: "..." },
+    { label: "Districts Covered", value: "36" },
+  ]);
+
+  React.useEffect(() => {
+    async function loadStats() {
+      try {
+        const kpis = await getMongoDBKPIs();
+        if (kpis && kpis.length > 0) {
+          // Find specific KPIs returned from our MongoDB query
+          const registered = kpis.find(k => k.label === "Registered Trainees")?.value || "0";
+          const employment = kpis.find(k => k.label === "Employment Rate")?.value || "0%";
+          const completion = kpis.find(k => k.label === "Completion Rate")?.value || "0%";
+          
+          setStats([
+            { label: "Trainees Tracked", value: registered },
+            { label: "Employment Rate", value: employment },
+            { label: "Completion Rate", value: completion },
+            { label: "Districts Covered", value: "36" }, // Maharashtra has 36 districts
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch real stats:", error);
+      }
+    }
+    loadStats();
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-[#0f172a] text-white min-h-[600px] flex flex-col justify-center border-b border-border/10">
       
@@ -162,12 +194,7 @@ function HeroSection() {
 
           {/* Quick stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16 pt-8 border-t border-white/20">
-            {[
-              { label: "Trainees Tracked", value: "1,25,430" },
-              { label: "Employment Rate", value: "72.4%" },
-              { label: "6-Month Retention", value: "68.2%" },
-              { label: "Districts Covered", value: "34" },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="drop-shadow-md">
                 <p className="text-2xl sm:text-3xl font-bold">{stat.value}</p>
                 <p className="text-sm text-white/70 mt-1">{stat.label}</p>
@@ -572,19 +599,46 @@ function ProjectContextSection() {
 
 // ===== IMPACT METRICS SECTION =====
 function ImpactMetricsSection() {
-  const metrics = [
-    { label: "Trainees Tracked", value: "1.2M+", icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
-    { label: "Active Courses", value: "850+", icon: GraduationCap, color: "text-saffron", bg: "bg-orange-100" },
-    { label: "Training Providers", value: "320+", icon: Building2, color: "text-india-green", bg: "bg-green-100" },
-    { label: "Placement Rate", value: "78%", icon: Target, color: "text-purple-600", bg: "bg-purple-100" },
-  ];
+  const [metrics, setMetrics] = useState([
+    { label: "Trainees Tracked", value: "...", icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
+    { label: "Active Courses", value: "...", icon: GraduationCap, color: "text-saffron", bg: "bg-orange-100" },
+    { label: "Training Providers", value: "...", icon: Building2, color: "text-india-green", bg: "bg-green-100" },
+    { label: "Placement Rate", value: "...", icon: Target, color: "text-purple-600", bg: "bg-purple-100" },
+  ]);
+
+  React.useEffect(() => {
+    async function loadStats() {
+      try {
+        const kpis = await getMongoDBKPIs();
+        if (kpis && kpis.length > 0) {
+          const registered = kpis.find(k => k.label === "Registered Trainees")?.value || "0";
+          const courses = kpis.find(k => k.label === "Active Courses")?.value || "0";
+          // Since providers aren't explicitly returned from the default MongoDB query in the same way, we can infer from our seed or just query it.
+          // Wait, getMongoDBKPIs() returns "Registered Trainees", "Active Courses", "Total Enrollments", "Completion Rate", "Employment Rate", "Platform Engagement".
+          // Let's use what we have:
+          const employment = kpis.find(k => k.label === "Employment Rate")?.value || "0%";
+          const completion = kpis.find(k => k.label === "Completion Rate")?.value || "0%";
+
+          setMetrics([
+            { label: "Trainees Tracked", value: registered, icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
+            { label: "Active Courses", value: courses, icon: GraduationCap, color: "text-saffron", bg: "bg-orange-100" },
+            { label: "Completion Rate", value: completion, icon: Building2, color: "text-india-green", bg: "bg-green-100" },
+            { label: "Placement Rate", value: employment, icon: Target, color: "text-purple-600", bg: "bg-purple-100" },
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch real stats:", error);
+      }
+    }
+    loadStats();
+  }, []);
 
   return (
     <section className="py-16 bg-white border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold text-slate-900">Platform Scale & Impact</h2>
-          <p className="text-slate-500 mt-2">Simulated metrics demonstrating platform capacity</p>
+          <p className="text-slate-500 mt-2">Real-time metrics from the SkillTrack platform</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {metrics.map((m, i) => (
