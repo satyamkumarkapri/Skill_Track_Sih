@@ -407,12 +407,12 @@ function RolesSection() {
           {roles.map((role, i) => {
             const Icon = role.icon;
             return (
-              <div key={i} className="p-5 rounded-xl bg-white border border-slate-200 text-center shadow-sm">
-                <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center mx-auto mb-3", role.color)}>
-                  <Icon className="h-6 w-6" />
+              <div key={i} className="p-6 rounded-2xl bg-white border border-slate-100 text-center shadow-sm card-hover group">
+                <div className={cn("h-14 w-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3", role.color)}>
+                  <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="text-sm font-semibold text-slate-900 mb-1">{role.title}</h3>
-                <p className="text-xs text-slate-600">{role.desc}</p>
+                <h3 className="text-sm font-bold text-slate-900 mb-2">{role.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{role.desc}</p>
               </div>
             );
           })}
@@ -512,25 +512,31 @@ function PrivacySection() {
 // ===== CTA SECTION =====
 function CTASection() {
   return (
-    <section className="py-20 bg-[#0f172a] text-white border-t border-white/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+    <section className="py-24 relative overflow-hidden text-white border-t border-slate-800">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617] z-0" />
+      
+      {/* Decorative Glows */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-saffron/10 rounded-full blur-3xl animate-pulse-subtle z-0" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-india-green/10 rounded-full blur-3xl animate-pulse-subtle z-0" style={{ animationDelay: '2s' }} />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
           Join the SkillTrack Network
         </h2>
-        <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
           Register or log in to manage your skilling journey, verify employment, and track outcomes on the official portal.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-5 justify-center">
           <Link
             href="/login"
-            className="inline-flex items-center justify-center gap-2 h-12 px-8 bg-saffron text-white font-semibold rounded-lg hover:bg-saffron/90 transition-colors shadow-lg shadow-saffron/20"
+            className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-gradient-to-r from-saffron to-orange-600 text-white font-bold rounded-xl hover:from-saffron/90 hover:to-orange-500 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] hover:-translate-y-1"
           >
             Login to Dashboard
             <ArrowRight className="h-5 w-5" />
           </Link>
           <Link
             href="/login?tab=register"
-            className="inline-flex items-center justify-center gap-2 h-12 px-8 bg-white/10 text-white font-medium rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+            className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-white/10 backdrop-blur-md text-white font-medium rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40"
           >
             Register Now
           </Link>
@@ -663,21 +669,21 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-saffron to-india-green flex items-center justify-center shadow-lg">
-                <Target className="h-6 w-6 text-white" />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-saffron to-india-green flex items-center justify-center shadow-lg">
+                <Target className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white leading-tight">SkillTrack</h3>
-                <p className="text-xs font-medium text-slate-300">Maharashtra</p>
+                <h3 className="text-xl font-bold text-white leading-tight tracking-tight">SkillTrack</h3>
+                <p className="text-sm font-medium text-slate-400">Maharashtra</p>
               </div>
             </div>
-            <p className="text-sm max-w-md leading-relaxed mb-6">
+            <p className="text-sm max-w-md leading-relaxed mb-6 text-slate-400">
               A comprehensive Skilling Outcomes & Impact Intelligence Platform designed to monitor the longitudinal career progression of trainees post-certification. Built for the Smart India Hackathon 2026.
             </p>
             <div className="flex items-center gap-3 text-xs">
-              <span className="px-2.5 py-1 bg-saffron text-white font-semibold rounded-md">SIH 2026</span>
-              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md border border-slate-700">Problem: SIH26135</span>
+              <span className="px-3 py-1 bg-saffron/10 text-saffron border border-saffron/20 font-semibold rounded-md shadow-sm">SIH 2026</span>
+              <span className="px-3 py-1 bg-white/5 text-slate-300 rounded-md border border-white/10">Problem: SIH26135</span>
             </div>
           </div>
           
