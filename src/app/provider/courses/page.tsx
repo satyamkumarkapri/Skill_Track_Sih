@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
-import { BookOpen, Plus, Search } from "lucide-react";
+import { BookOpen, Plus, Search, Star, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import { getProviderCourses } from "@/actions/courses";
 
@@ -60,7 +60,7 @@ export default async function CoursesListPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course) => (
                 <Card key={course.id} className="border border-border/50 shadow-sm hover:border-primary/30 transition-colors flex flex-col">
-                  <div className="p-5 flex-1">
+                  <div className="p-5 flex-1 flex flex-col">
                     <div className="flex items-start justify-between mb-3">
                       <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
                         {course.sector}
@@ -69,7 +69,16 @@ export default async function CoursesListPage() {
                     </div>
                     <h3 className="font-semibold text-lg leading-tight mb-2">{course.title}</h3>
                     
-                    <div className="mt-4">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="flex items-center text-amber-500">
+                        <Star className="h-4 w-4 fill-current" />
+                        <span className="ml-1 text-sm font-bold">{course.rating ? course.rating.toFixed(1) : "New"}</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">•</span>
+                      <span className="text-xs text-muted-foreground">{course.reviewCount || 0} reviews</span>
+                    </div>
+                    
+                    <div className="mt-auto">
                       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Target Skills</p>
                       <div className="flex flex-wrap gap-2">
                         {course.targetSkills.slice(0, 3).map((skill: string, i: number) => (
@@ -81,12 +90,19 @@ export default async function CoursesListPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="p-5 border-t border-border/50 bg-muted/20 flex items-center justify-between">
+                  <div className="p-5 border-t border-border/50 bg-slate-50/50 flex items-center justify-between">
                     <div>
-                      <p className="text-xs text-muted-foreground mb-0.5">Enrolled Trainees</p>
+                      <p className="text-xs text-muted-foreground mb-0.5">Enrolled</p>
                       <p className="font-bold text-foreground text-lg">{course.enrolledTrainees}</p>
                     </div>
-                    <Button variant="outline" size="sm">Manage</Button>
+                    <div className="flex gap-2">
+                      <Link href={`/provider/courses/${course.id}/feedback`}>
+                        <Button variant="outline" size="sm" className="gap-2" title="View Feedback">
+                          <MessageSquare className="h-3.5 w-3.5" />
+                        </Button>
+                      </Link>
+                      <Button variant="default" size="sm">Manage</Button>
+                    </div>
                   </div>
                 </Card>
               ))}

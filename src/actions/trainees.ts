@@ -1,6 +1,7 @@
 "use server";
 
 import { getDb } from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export async function getTraineesFromDB() {
   try {
@@ -25,23 +26,56 @@ export async function getTraineesFromDB() {
   }
 }
 
-export async function getTraineeById(id: string) {
+export async function getTraineeById(id: string): Promise<any> {
   try {
     const db = await getDb();
-    const trainee = await db.collection("trainees").findOne({ _id: id as any });
     
-    if (!trainee) return null;
+    // Attempt to parse ID, fallback to string matching if invalid format
+    let objectId;
+    try {
+      objectId = new ObjectId(id);
+    } catch (e) {
+      // Ignore
+    }
 
+    // Try finding in users collection first (where live data is)
+    let user = null;
+    if (objectId) {
+      user = await db.collection("users").findOne({ _id: objectId });
+    }
+    
+    // Try finding in trainees collection (mock data)
+    let trainee = null;
+    if (objectId) {
+      trainee = await db.collection("trainees").findOne({ _id: objectId });
+    } else {
+      trainee = await db.collection("trainees").findOne({ _id: id as any });
+    }
+    
+    if (!trainee && !user) return null;
+
+    // Merge data favoring the users collection
+    const base = (trainee || user)!;
+    
     return {
-      ...trainee,
-      _id: trainee._id.toString(),
-      id: trainee._id.toString(),
+      ...base,
+      _id: base._id.toString(),
+      id: base._id.toString(),
+      name: user?.name || trainee?.name || "Unknown",
+      email: user?.email || trainee?.email || "",
       age: 24,
       education: "12th Pass",
       taluka: "City Center",
-      training_status: trainee.employment_status === 'enrolled' ? 'in-progress' : 'completed',
-      current_salary: trainee.employment_status === 'employed' ? Math.floor(Math.random() * 20000) + 15000 : null,
+      district: trainee?.district || "Pune",
+      training_status: base.employment_status === 'enrolled' ? 'in-progress' : 'completed',
+      current_salary: base.employment_status === 'employed' ? Math.floor(Math.random() * 20000) + 15000 : null,
       skill_match_score: Math.floor(Math.random() * 40) + 60,
+      course_name: trainee?.course_name || "Full Stack Web Development",
+      // Live dynamic fields from users collection
+      employmentData: user?.employmentData || null,
+      employmentHistory: user?.employmentHistory || [],
+      certificates: user?.certificates || [],
+      followUps: user?.followUps || [],
     };
   } catch (error) {
     console.error("Error fetching trainee by ID:", error);

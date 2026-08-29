@@ -65,6 +65,7 @@ const traineeNavItems: NavItem[] = [
   { label: "My Profile", href: "/trainee/profile", icon: Users },
   { label: "Training", href: "/trainee/training", icon: GraduationCap },
   { label: "Employment", href: "/trainee/employment", icon: Briefcase },
+  { label: "Certificates", href: "/trainee/certificates", icon: BookOpen },
   { label: "Follow-ups", href: "/trainee/follow-ups", icon: MessageSquare },
   { label: "Consent", href: "/trainee/consent", icon: Shield },
   { label: "Feedback", href: "/trainee/feedback", icon: ClipboardList },
@@ -218,11 +219,11 @@ export function Sidebar({ role = "government_admin", userName = "Rajesh Deshmukh
         {sidebarContent}
       </aside>
 
-      {/* Desktop sidebar */}
+      {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden lg:flex flex-col fixed inset-y-0 left-0 z-30 bg-[#0f172a] border-r border-border/10 transition-all duration-200",
-          collapsed ? "w-[68px]" : "w-64"
+          "hidden lg:flex flex-col fixed inset-y-0 left-0 z-40 bg-slate-950/80 backdrop-blur-xl border-r border-white/10 transition-all duration-300 shadow-[4px_0_24px_rgba(0,0,0,0.2)]",
+          collapsed ? "w-20" : "w-64"
         )}
       >
         {sidebarContent}
@@ -279,13 +280,8 @@ export function DashboardHeader({
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-20 bg-background border-b border-border h-16 flex items-center justify-between px-6 transition-all",
-        collapsed ? "lg:pl-[92px]" : "lg:pl-[280px]"
-      )}
-    >
-      <div className="flex items-center gap-3 pl-10 lg:pl-0">
+    <header className="sticky top-0 z-30 lg:pl-64 h-16 bg-background/80 backdrop-blur-md border-b border-border/50 flex items-center justify-between px-4 sm:px-6 shadow-sm transition-all duration-300">
+      <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
           <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-india-green/10 text-india-green border border-india-green/20 px-2.5 py-1 rounded-full">
             <span className="h-1.5 w-1.5 rounded-full bg-india-green animate-pulse" />

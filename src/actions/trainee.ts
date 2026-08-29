@@ -56,6 +56,8 @@ export async function getAvailableCourses() {
         durationWeeks: c.durationWeeks,
         targetSkills: c.targetSkills || [],
         enrolledTrainees: c.enrolledTrainees || 0,
+        rating: c.rating || 0,
+        reviewCount: c.reviewCount || 0,
       })),
     };
   } catch (error) {
@@ -138,5 +140,33 @@ export async function enrollInCourse(courseId: string) {
   } catch (error) {
     console.error("Enrollment error:", error);
     return { error: "Failed to enroll in course" };
+  }
+}
+
+export async function updateTraineeProfile(data: any) {
+  try {
+    const session = await verifySession();
+    if (!session || session.role !== "trainee") {
+      return { error: "Unauthorized" };
+    }
+
+    const db = await getDb();
+    
+    // Update the user record
+    await db.collection("users").updateOne(
+      { _id: new (require("mongodb").ObjectId)(session.userId) },
+      { 
+        $set: { 
+          name: data.name,
+          onboardingData: data.onboardingData 
+        } 
+      }
+    );
+
+    revalidatePath("/trainee/profile");
+    return { success: true };
+  } catch (error) {
+    console.error("Update profile error:", error);
+    return { error: "Failed to update profile" };
   }
 }

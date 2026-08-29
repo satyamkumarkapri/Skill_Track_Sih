@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle, CardContent, Button, Badge } from "@/components/ui";
-import { BookOpen, CheckCircle2, Clock, MapPin, Building2, Calendar, Loader2 } from "lucide-react";
+import { BookOpen, CheckCircle2, Clock, MapPin, Building2, Calendar, Loader2, Star, MessageSquare } from "lucide-react";
 import { getAvailableCourses, getMyEnrollments, enrollInCourse } from "@/actions/trainee";
+import Link from "next/link";
 import { toast } from "sonner";
 
 export default function TraineeTrainingPage() {
@@ -76,10 +77,20 @@ export default function TraineeTrainingPage() {
                   </div>
                   <h3 className="font-semibold text-lg">{enrollment.courseTitle}</h3>
                 </div>
-                <div className="px-5 py-3 border-t border-border/50 bg-muted/20">
-                  <Button variant="outline" size="sm" className="w-full">
+                <div className="px-5 py-3 border-t border-border/50 bg-muted/20 flex gap-2">
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="flex-1"
+                    onClick={() => toast.success("Redirecting to Learning Management System...")}
+                  >
                     Go to Course
                   </Button>
+                  <Link href="/trainee/feedback" className="flex-1">
+                    <Button variant="outline" size="sm" className="w-full gap-2">
+                      <Star className="h-3.5 w-3.5" /> Rate Course
+                    </Button>
+                  </Link>
                 </div>
               </Card>
             ))}
@@ -111,7 +122,7 @@ export default function TraineeTrainingPage() {
               
               return (
                 <Card key={course.id} className={`border border-border/50 shadow-sm flex flex-col ${isEnrolled ? "opacity-60" : ""}`}>
-                  <div className="p-5 flex-1">
+                  <div className="p-5 flex-1 flex flex-col">
                     <div className="flex items-start justify-between mb-3">
                       <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
                         {course.sector}
@@ -121,11 +132,24 @@ export default function TraineeTrainingPage() {
                       </span>
                     </div>
                     <h3 className="font-semibold text-lg leading-tight mb-2">{course.title}</h3>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1.5 mb-4">
+                    <p className="text-sm text-muted-foreground flex items-center gap-1.5 mb-2">
                       <Building2 className="h-4 w-4" /> {course.providerName}
                     </p>
+
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="flex items-center text-amber-500">
+                        <Star className="h-4 w-4 fill-current" />
+                        <span className="ml-1 text-sm font-bold">{course.rating ? course.rating.toFixed(1) : "New"}</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">•</span>
+                      <span className="text-xs text-muted-foreground hover:underline">
+                        <Link href={`/trainee/courses/${course.id}/feedback`}>
+                          {course.reviewCount || 0} reviews
+                        </Link>
+                      </span>
+                    </div>
                     
-                    <div>
+                    <div className="mt-auto">
                       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Skills Covered</p>
                       <div className="flex flex-wrap gap-2">
                         {course.targetSkills.slice(0, 3).map((skill: string, i: number) => (
@@ -137,20 +161,25 @@ export default function TraineeTrainingPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="p-5 border-t border-border/50 bg-muted/20">
+                  <div className="p-5 border-t border-border/50 bg-slate-50/50 flex gap-2">
+                    <Link href={`/trainee/courses/${course.id}/feedback`}>
+                      <Button variant="outline" className="px-3 text-muted-foreground hover:text-primary" title="Read Reviews">
+                        <MessageSquare className="h-4 w-4" />
+                      </Button>
+                    </Link>
                     {isEnrolled ? (
-                      <Button variant="secondary" className="w-full cursor-default" disabled>
+                      <Button variant="secondary" className="flex-1 cursor-default" disabled>
                         <CheckCircle2 className="mr-2 h-4 w-4 text-emerald-600" />
-                        Already Enrolled
+                        Enrolled
                       </Button>
                     ) : (
                       <Button 
-                        className="w-full" 
+                        className="flex-1" 
                         onClick={() => handleEnroll(course.id)}
                         disabled={enrollingId === course.id}
                       >
                         {enrollingId === course.id ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                        Enroll Now
+                        Enroll
                       </Button>
                     )}
                   </div>

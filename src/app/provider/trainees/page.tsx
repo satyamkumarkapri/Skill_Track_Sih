@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from "@/components/ui";
 import { Users, Search, Download } from "lucide-react";
 import { getProviderTrainees, seedMockEnrollments } from "@/actions/provider";
@@ -83,7 +84,9 @@ export default async function ProviderTraineesPage() {
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <Button variant="ghost" size="sm">View Profile</Button>
+                        <Link href={`/profile/${enrollment.traineeId}`}>
+                          <Button variant="ghost" size="sm">View Profile</Button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

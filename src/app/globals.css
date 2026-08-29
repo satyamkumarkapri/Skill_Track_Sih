@@ -218,10 +218,33 @@ body {
   outline-offset: 2px;
 }
 
-/* ===== Card Hover (Removed for stability) ===== */
+/* ===== Card Hover (Liquid Effect) ===== */
 
 .card-hover {
-  /* Removed to avoid layout shifts in enterprise dashboards */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+/* ===== Glassmorphism ===== */
+
+.glass-panel {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.glass-header {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid hsl(var(--border) / 0.4);
 }
 
 /* ===== Government Badge ===== */

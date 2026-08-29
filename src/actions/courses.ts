@@ -77,6 +77,8 @@ export async function getProviderCourses() {
         targetSkills: c.targetSkills,
         enrolledTrainees: c.enrolledTrainees || 0,
         createdAt: c.createdAt,
+        rating: c.rating || 0,
+        reviewCount: c.reviewCount || 0,
       })),
     };
   } catch (error) {
@@ -142,6 +144,8 @@ export async function getAllCoursesFromDB() {
         providerId: c.providerId,
         isActive: c.isActive !== false,
         createdAt: c.createdAt?.toISOString?.() ?? null,
+        rating: c.rating || 0,
+        reviewCount: c.reviewCount || 0,
       })),
     };
   } catch (error) {

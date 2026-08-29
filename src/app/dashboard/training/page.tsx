@@ -3,7 +3,8 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, KPICard, Badge } from "@/components/ui";
 import { getAllCoursesFromDB } from "@/actions/courses";
-import { BookOpen, Users, Building2, Clock } from "lucide-react";
+import { BookOpen, Users, Building2, Clock, Star } from "lucide-react";
+import Link from "next/link";
 
 export default function TrainingPage() {
   const [courses, setCourses] = React.useState<any[]>([]);
@@ -87,11 +88,22 @@ export default function TrainingPage() {
                       </p>
                       <div className="grid grid-cols-2 gap-2 text-xs mb-3">
                         <div className="flex items-center gap-1 text-muted-foreground">
-                          <Clock className="h-3 w-3" /><span>{course.durationWeeks} weeks</span>
+                          <Clock className="h-3 w-3" /><span>{course.durationWeeks} wks</span>
                         </div>
                         <div className="flex items-center gap-1 text-muted-foreground">
-                          <Users className="h-3 w-3" /><span>{course.enrolledTrainees || 0} enrolled</span>
+                          <Users className="h-3 w-3" /><span>{course.enrolledTrainees || 0}</span>
                         </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-1.5 mb-3">
+                        <div className="flex items-center text-amber-500">
+                          <Star className="h-3.5 w-3.5 fill-current" />
+                          <span className="ml-1 text-[11px] font-bold">{course.rating ? course.rating.toFixed(1) : "New"}</span>
+                        </div>
+                        <span className="text-[10px] text-muted-foreground">•</span>
+                        <Link href={`/dashboard/courses/${course.id}/feedback`} className="text-[11px] text-muted-foreground hover:underline hover:text-primary">
+                          {course.reviewCount || 0} reviews
+                        </Link>
                       </div>
                       {course.targetSkills?.length > 0 && (
                         <div className="flex flex-wrap gap-1 mb-2">

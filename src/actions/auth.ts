@@ -12,12 +12,14 @@ export async function registerUser(formData: FormData) {
     let email = formData.get("email") as string;
     const role = formData.get("role") as string;
     const password = formData.get("password") as string;
+    const securityQuestion = formData.get("securityQuestion") as string;
+    const securityAnswer = formData.get("securityAnswer") as string;
 
     if (email) {
       email = email.trim().toLowerCase();
     }
 
-    if (!firstName || !lastName || !email || !role || !password) {
+    if (!firstName || !lastName || !email || !role || !password || !securityQuestion || !securityAnswer) {
       return { error: "All fields are required" };
     }
 
@@ -39,6 +41,8 @@ export async function registerUser(formData: FormData) {
       email,
       role,
       password: hashedPassword,
+      securityQuestion,
+      securityAnswer: securityAnswer.trim().toLowerCase(), // normalize answer
       createdAt: new Date(),
       onboardingCompleted: false, // Force new users to complete onboarding
     };
@@ -240,3 +244,72 @@ export async function completeOnboardingAction(formData: FormData) {
   }
 }
 
+// ====== PASSWORD RECOVERY ACTIONS ======
+
+export async function getUserSecurityQuestion(email: string) {
+  try {
+    if (!email) return { error: "Email is required" };
+    
+    const db = await getDb();
+    const user = await db.collection("users").findOne({ email: email.trim().toLowerCase() });
+    
+    if (!user) {
+      return { error: "No account found with this email" };
+    }
+    
+    if (!user.securityQuestion) {
+      return { error: "This account was not set up with a security question. Please contact support." };
+    }
+    
+    return { success: true, question: user.securityQuestion };
+  } catch (error) {
+    console.error("getUserSecurityQuestion error:", error);
+    return { error: "An unexpected error occurred" };
+  }
+}
+
+export async function verifySecurityAnswer(email: string, answer: string) {
+  try {
+    const db = await getDb();
+    const user = await db.collection("users").findOne({ email: email.trim().toLowerCase() });
+    
+    if (!user || !user.securityAnswer) {
+      return { error: "Account not found or no security question configured" };
+    }
+    
+    // Simple case-insensitive comparison
+    if (user.securityAnswer.toLowerCase() === answer.trim().toLowerCase()) {
+      return { success: true };
+    } else {
+      return { error: "Incorrect answer to security question" };
+    }
+  } catch (error) {
+    console.error("verifySecurityAnswer error:", error);
+    return { error: "An unexpected error occurred" };
+  }
+}
+
+export async function resetPassword(email: string, newPassword: string) {
+  try {
+    if (!newPassword || newPassword.length < 6) {
+      return { error: "Password must be at least 6 characters long" };
+    }
+    
+    const db = await getDb();
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+    const result = await db.collection("users").updateOne(
+      { email: email.trim().toLowerCase() },
+      { $set: { password: hashedPassword } }
+    );
+    
+    if (result.matchedCount === 0) {
+      return { error: "Account not found" };
+    }
+    
+    return { success: true };
+  } catch (error) {
+    console.error("resetPassword error:", error);
+    return { error: "An unexpected error occurred while resetting your password" };
+  }
+}

@@ -33,7 +33,7 @@ import { toast } from "sonner";
 // ===== LANDING HEADER =====
 function LandingHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
@@ -209,12 +209,12 @@ function ProblemSection() {
             return (
               <div
                 key={i}
-                className="flex items-start gap-4 p-6 rounded-xl bg-red-50 border border-red-100 hover:shadow-sm transition-all"
+                className="flex items-start gap-4 p-6 rounded-2xl bg-red-50/50 backdrop-blur-sm border border-red-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div className="p-2 rounded-lg bg-red-100 flex-shrink-0">
-                  <Icon className="h-5 w-5 text-red-600" />
+                <div className="p-3 rounded-xl bg-red-100/80 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="h-6 w-6 text-red-600" />
                 </div>
-                <p className="text-sm text-slate-900 leading-relaxed font-medium">{problem.text}</p>
+                <p className="text-sm text-slate-900 leading-relaxed font-medium mt-1">{problem.text}</p>
               </div>
             );
           })}
@@ -254,18 +254,21 @@ function HowItWorksSection() {
             return (
               <div
                 key={i}
-                className="relative p-6 rounded-xl bg-white border border-slate-200 hover:border-primary/20 hover:shadow-md transition-all group"
+                className="relative p-8 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200 hover:border-primary/30 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                    <Icon className="h-5 w-5 text-primary" />
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 group-hover:scale-150 transition-all duration-500">
+                  <Icon className="w-32 h-32 text-primary" />
+                </div>
+                <div className="flex items-center gap-3 mb-6 relative z-10">
+                  <div className="h-12 w-12 rounded-xl bg-primary/5 flex items-center justify-center group-hover:bg-primary group-hover:shadow-lg transition-all duration-300">
+                    <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
                   </div>
-                  <span className="text-xs font-bold text-slate-500 bg-slate-100 rounded-full px-2 py-0.5">
+                  <span className="text-xs font-bold text-slate-600 bg-slate-100 rounded-full px-3 py-1 border border-slate-200">
                     Step {i + 1}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3 relative z-10">{step.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed relative z-10">{step.desc}</p>
               </div>
             );
           })}
@@ -278,36 +281,72 @@ function HowItWorksSection() {
 // ===== KEY FEATURES =====
 function FeaturesSection() {
   const features = [
-    { icon: BarChart3, title: "Cohort & Provider Analytics", desc: "Compare providers, courses, districts and demographics with real outcome data." },
-    { icon: MapPin, title: "District Intelligence", desc: "Interactive Maharashtra map with district-level employment, retention, and skill gap data." },
-    { icon: Target, title: "Skill Gap Engine", desc: "Compare skills taught vs. industry demand to identify curriculum gaps." },
-    { icon: Brain, title: "AI Decision Support", desc: "Predict placement probability, attrition risk, and skill mismatch using ML models." },
-    { icon: Shield, title: "Privacy & Consent", desc: "Consent-based tracking with granular control over data sharing and follow-ups." },
-    { icon: Lightbulb, title: "Intervention Engine", desc: "Generate and track targeted interventions based on data-driven insights." },
-    { icon: Store, title: "Self-Employment Tracking", desc: "Track business creation, survival rates, and income progression." },
-    { icon: Wrench, title: "Employer Verification", desc: "Multi-source employment verification with confidence scoring." },
+    { icon: BarChart3, title: "Cohort & Provider Analytics", desc: "Compare providers, courses, districts and demographics with real outcome data.", color: "blue" },
+    { icon: MapPin, title: "District Intelligence", desc: "Interactive Maharashtra map with district-level employment, retention, and skill gap data.", color: "emerald" },
+    { icon: Target, title: "Skill Gap Engine", desc: "Compare skills taught vs. industry demand to identify curriculum gaps.", color: "saffron" },
+    { icon: Brain, title: "AI Decision Support", desc: "Predict placement probability, attrition risk, and skill mismatch using ML models.", color: "purple" },
+    { icon: Shield, title: "Privacy & Consent", desc: "Consent-based tracking with granular control over data sharing and follow-ups.", color: "rose" },
+    { icon: Lightbulb, title: "Intervention Engine", desc: "Generate and track targeted interventions based on data-driven insights.", color: "amber" },
+    { icon: Store, title: "Self-Employment Tracking", desc: "Track business creation, survival rates, and income progression.", color: "cyan" },
+    { icon: Wrench, title: "Employer Verification", desc: "Multi-source employment verification with confidence scoring.", color: "slate" },
   ];
 
+  const getColorClasses = (color: string) => {
+    const map: Record<string, { bg: string, text: string, hoverBg: string, border: string }> = {
+      blue: { bg: 'bg-blue-50', text: 'text-blue-600', hoverBg: 'group-hover:bg-blue-500', border: 'hover:border-blue-200' },
+      emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-500', border: 'hover:border-emerald-200' },
+      saffron: { bg: 'bg-orange-50', text: 'text-orange-500', hoverBg: 'group-hover:bg-orange-500', border: 'hover:border-orange-200' },
+      purple: { bg: 'bg-purple-50', text: 'text-purple-600', hoverBg: 'group-hover:bg-purple-500', border: 'hover:border-purple-200' },
+      rose: { bg: 'bg-rose-50', text: 'text-rose-600', hoverBg: 'group-hover:bg-rose-500', border: 'hover:border-rose-200' },
+      amber: { bg: 'bg-amber-50', text: 'text-amber-600', hoverBg: 'group-hover:bg-amber-500', border: 'hover:border-amber-200' },
+      cyan: { bg: 'bg-cyan-50', text: 'text-cyan-600', hoverBg: 'group-hover:bg-cyan-500', border: 'hover:border-cyan-200' },
+      slate: { bg: 'bg-slate-100', text: 'text-slate-700', hoverBg: 'group-hover:bg-slate-700', border: 'hover:border-slate-300' },
+    };
+    return map[color] || map.blue;
+  };
+
   return (
-    <section id="features" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Platform Features</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+    <section id="features" className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-widest mb-4">
+            Platform Features
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Comprehensive Impact Intelligence
           </h2>
+          <p className="mt-4 text-lg text-slate-600">
+            Powerful tools designed specifically for tracking longitudinal outcomes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {features.map((feat, i) => {
-            const Icon = feat.icon;
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+            const colors = getColorClasses(feature.color);
+            
             return (
-              <div key={i} className="p-5 rounded-xl border border-slate-200 hover:border-primary/20 hover:shadow-sm transition-all">
-                <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center mb-4">
-                  <Icon className="h-5 w-5 text-primary" />
+              <div
+                key={i}
+                className={`group relative p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden ${colors.border}`}
+              >
+                {/* Background Watermark */}
+                <div className="absolute -bottom-6 -right-6 opacity-[0.03] group-hover:opacity-10 group-hover:scale-125 transition-all duration-500 transform rotate-12">
+                  <Icon className="w-40 h-40 text-slate-900" />
                 </div>
-                <h3 className="text-sm font-semibold text-slate-900 mb-1.5">{feat.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
+                
+                {/* Subtle Gradient Overlay */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${colors.bg}`}></div>
+
+                <div className="relative z-10">
+                  <div className={`h-14 w-14 rounded-2xl ${colors.bg} flex items-center justify-center mb-6 shadow-sm ${colors.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
+                    <Icon className={`h-7 w-7 ${colors.text} group-hover:text-white transition-colors duration-300`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-medium">{feature.desc}</p>
+                </div>
               </div>
             );
           })}
@@ -471,28 +510,147 @@ function CTASection() {
   );
 }
 
+// ===== PROJECT CONTEXT SECTION =====
+function ProjectContextSection() {
+  return (
+    <section className="py-20 bg-slate-50 border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-sm font-bold text-saffron tracking-wider uppercase mb-2">The Hackathon Challenge</h2>
+            <h3 className="text-3xl font-bold text-slate-900 mb-6">Bridging the Gap Between Training and Livelihood</h3>
+            <p className="text-slate-600 mb-4 leading-relaxed">
+              Under the Smart India Hackathon 2026 (Problem Statement <strong>SIH26135</strong>), the Government of Maharashtra identified a critical challenge: while millions are trained under various state schemes, tracking their long-term career progression and employment retention remains a black box.
+            </p>
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              SkillTrack was built to solve this exact problem. By integrating machine learning for skill gap analysis and providing longitudinal tracking mechanisms, the platform ensures that training translates into sustainable, long-term employment.
+            </p>
+            <ul className="space-y-3">
+              {[
+                "Longitudinal Outcome Tracking (12+ Months)",
+                "AI-Powered Skill Demand Forecasting",
+                "Unified Dashboard for Government, Providers, & Employers",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm text-slate-900 font-medium">
+                  <div className="h-6 w-6 rounded-full bg-saffron/20 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 className="h-4 w-4 text-saffron" />
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-saffron/20 to-india-green/20 rounded-2xl blur-3xl" />
+            <div className="relative bg-white border border-border p-8 rounded-2xl shadow-xl">
+              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+                <div className="h-12 w-12 bg-slate-100 rounded-full flex items-center justify-center">
+                  <Building2 className="h-6 w-6 text-slate-700" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900">Ministry of Skill Development</h4>
+                  <p className="text-sm text-slate-500">Government of Maharashtra</p>
+                </div>
+              </div>
+              <blockquote className="text-slate-700 italic">
+                "Our goal is not just certification, but meaningful employment. We need a system that tracks candidates post-placement to understand true scheme efficacy."
+              </blockquote>
+              <div className="mt-6 pt-6 border-t border-border flex justify-between items-center">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Official SIH 2026 Submission</span>
+                <span className="px-3 py-1 bg-saffron text-white text-xs font-bold rounded-full">Team Name</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ===== IMPACT METRICS SECTION =====
+function ImpactMetricsSection() {
+  const metrics = [
+    { label: "Trainees Tracked", value: "1.2M+", icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
+    { label: "Active Courses", value: "850+", icon: GraduationCap, color: "text-saffron", bg: "bg-orange-100" },
+    { label: "Training Providers", value: "320+", icon: Building2, color: "text-india-green", bg: "bg-green-100" },
+    { label: "Placement Rate", value: "78%", icon: Target, color: "text-purple-600", bg: "bg-purple-100" },
+  ];
+
+  return (
+    <section className="py-16 bg-white border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-bold text-slate-900">Platform Scale & Impact</h2>
+          <p className="text-slate-500 mt-2">Simulated metrics demonstrating platform capacity</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {metrics.map((m, i) => (
+            <div key={i} className="p-6 bg-slate-50 border border-border rounded-2xl text-center hover:shadow-md transition-shadow">
+              <div className={`mx-auto h-12 w-12 rounded-full ${m.bg} flex items-center justify-center mb-4`}>
+                <m.icon className={`h-6 w-6 ${m.color}`} />
+              </div>
+              <div className="text-3xl font-bold text-slate-900 mb-1">{m.value}</div>
+              <div className="text-sm font-medium text-slate-600">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ===== FOOTER =====
 function Footer() {
   return (
-    <footer className="bg-[hsl(222,47%,10%)] text-white/60 py-8">
+    <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center">
-              <Target className="h-4 w-4 text-white/60" />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-saffron to-india-green flex items-center justify-center shadow-lg">
+                <Target className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white leading-tight">SkillTrack</h3>
+                <p className="text-xs font-medium text-slate-300">Maharashtra</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-medium text-white/80">SkillTrack Maharashtra</p>
-              <p className="text-xs text-white/40">Skilling Outcomes & Impact Intelligence Platform</p>
+            <p className="text-sm max-w-md leading-relaxed mb-6">
+              A comprehensive Skilling Outcomes & Impact Intelligence Platform designed to monitor the longitudinal career progression of trainees post-certification. Built for the Smart India Hackathon 2026.
+            </p>
+            <div className="flex items-center gap-3 text-xs">
+              <span className="px-2.5 py-1 bg-saffron text-white font-semibold rounded-md">SIH 2026</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md border border-slate-700">Problem: SIH26135</span>
             </div>
           </div>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="demo-badge">SIH 2026 Initiative</span>
-            <span>Problem Statement: SIH26135</span>
+          
+          <div>
+            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="#problem" className="hover:text-white transition-colors">The Problem</Link></li>
+              <li><Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link></li>
+              <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
+              <li><Link href="/login" className="hover:text-white transition-colors">Dashboard Login</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Legal & Support</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Data Security</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Contact Support</Link></li>
+            </ul>
           </div>
         </div>
-        <div className="mt-6 pt-4 border-t border-white/10 text-center text-xs text-white/30">
-          This platform is built for Smart India Hackathon 2026. Data is securely managed and tracked in real-time.
+
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <p>© 2026 SkillTrack Maharashtra. Open source submission for SIH 2026.</p>
+          <div className="flex gap-4">
+            <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5" /> Secure Data Storage</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5" /> GDPR Compliant Design</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -502,10 +660,12 @@ function Footer() {
 // ===== MAIN LANDING PAGE =====
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden w-full relative">
       <LandingHeader />
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         <HeroSection />
+        <ImpactMetricsSection />
+        <ProjectContextSection />
         <ProblemSection />
         <HowItWorksSection />
         <FeaturesSection />

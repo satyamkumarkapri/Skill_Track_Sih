@@ -100,6 +100,27 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="securityQuestion" className="text-sm font-medium">Security Question (For Password Recovery)</Label>
+              <select 
+                id="securityQuestion" 
+                name="securityQuestion" 
+                required 
+                className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary/20"
+              >
+                <option value="">Select a security question</option>
+                <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                <option value="What city were you born in?">What city were you born in?</option>
+                <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                <option value="What was the name of your elementary school?">What was the name of your elementary school?</option>
+              </select>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="securityAnswer" className="text-sm font-medium">Security Answer</Label>
+              <Input id="securityAnswer" name="securityAnswer" required className="h-11 focus:ring-primary/20" />
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="role" className="text-sm font-medium">Account Role</Label>
               <Select id="role" name="role" required className="h-11 focus:ring-primary/20" defaultValue="">
                 <option value="" disabled>Select your organizational role</option>
