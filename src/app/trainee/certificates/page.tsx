@@ -13,10 +13,6 @@ export default function TraineeCertificatesPage() {
   const [saving, setSaving] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     setLoading(true);
     const result = await getMyFullProfile();
@@ -25,6 +21,10 @@ export default function TraineeCertificatesPage() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

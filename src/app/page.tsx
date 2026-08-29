@@ -427,6 +427,9 @@ function PrivacySection() {
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Privacy-Conscious by Design
               </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                &quot;The SkillTrack platform has completely transformed how we monitor our training programs. The analytics are incredibly insightful.&quot;
+              </p>
               <p className="text-slate-600 mb-6 leading-relaxed">
                 SkillTrack is built with a consent-first approach. Every trainee has full control over
                 their data, with granular consent for each tracking purpose.
@@ -553,7 +556,7 @@ function ProjectContextSection() {
                 </div>
               </div>
               <blockquote className="text-slate-700 italic">
-                "Our goal is not just certification, but meaningful employment. We need a system that tracks candidates post-placement to understand true scheme efficacy."
+                &quot;Our goal is not just certification, but meaningful employment. We need a system that tracks candidates post-placement to understand true scheme efficacy.&quot;
               </blockquote>
               <div className="mt-6 pt-6 border-t border-border flex justify-between items-center">
                 <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Official SIH 2026 Submission</span>

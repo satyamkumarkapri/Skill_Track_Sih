@@ -90,7 +90,7 @@ export default async function TraineeCourseFeedbackPage({ params }: { params: { 
                 </div>
 
                 <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 text-slate-700 text-sm italic">
-                  "{fb.comments || "No additional comments provided."}"
+                  &quot;{fb.comments || "No additional comments provided."}&quot;
                 </div>
               </CardContent>
             </Card>

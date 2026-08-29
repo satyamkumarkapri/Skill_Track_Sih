@@ -13,21 +13,20 @@ export default function TraineeTrainingPage() {
   const [loading, setLoading] = useState(true);
   const [enrollingId, setEnrollingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     const [coursesRes, enrollmentsRes] = await Promise.all([
       getAvailableCourses(),
       getMyEnrollments()
     ]);
     
-    if (coursesRes.success) setCourses(coursesRes.courses);
-    if (enrollmentsRes.success) setEnrollments(enrollmentsRes.enrollments);
-    
+    if (coursesRes.success) setCourses(coursesRes.courses || []);
+    if (enrollmentsRes.success) setEnrollments(enrollmentsRes.enrollments || []);
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleEnroll = async (courseId: string) => {
     setEnrollingId(courseId);

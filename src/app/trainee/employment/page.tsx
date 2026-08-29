@@ -14,10 +14,6 @@ export default function TraineeEmploymentPage() {
   const [isEditing, setIsEditing] = useState(false);
   const [isEnding, setIsEnding] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     setLoading(true);
     const result = await getMyFullProfile();
@@ -26,6 +22,10 @@ export default function TraineeEmploymentPage() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -248,7 +248,7 @@ export default function TraineeEmploymentPage() {
                     {job.reason && (
                       <div className="col-span-2 mt-1">
                         <span className="block text-[10px] uppercase tracking-wider text-slate-400 mb-0.5">Reason</span>
-                        <span className="italic">"{job.reason}"</span>
+                        <span className="italic">&quot;{job.reason}&quot;</span>
                       </div>
                     )}
                   </div>

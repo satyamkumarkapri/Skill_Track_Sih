@@ -74,7 +74,7 @@ export default async function ProviderAnalyticsPage() {
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground uppercase">Apprenticeships</p>
-                <h3 className="text-2xl font-bold">{apprenticeships}</h3>
+                <h3 className="text-lg font-bold">You don&apos;t have any active courses yet.</h3>
               </div>
             </div>
           </CardContent>
@@ -127,7 +127,7 @@ export default async function ProviderAnalyticsPage() {
             <Award className="h-12 w-12 text-primary mb-4" />
             <h3 className="text-xl font-bold text-foreground mb-2">SIH 2026 Objective Met</h3>
             <p className="text-muted-foreground text-sm">
-              By logging these outcomes, you are directly contributing to the government's skilling intelligence database, helping identify which courses lead to the best employment outcomes.
+              By logging these outcomes, you are directly contributing to the government&apos;s skilling intelligence database, helping identify which courses lead to the best employment outcomes.
             </p>
           </CardContent>
         </Card>

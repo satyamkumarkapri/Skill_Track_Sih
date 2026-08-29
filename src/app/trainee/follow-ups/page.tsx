@@ -22,7 +22,7 @@ export default async function TraineeFollowUpsPage() {
   const user = await db.collection("users").findOne({ _id: new ObjectId(session.userId) });
   const selfReported = user?.followUps || [];
 
-  let displayFollowUps = dbFollowUps.map(f => ({
+  const displayFollowUps = dbFollowUps.map(f => ({
     id: f._id.toString(),
     type: f.type || "Scheduled",
     date: f.date || new Date().toISOString().split('T')[0],
@@ -124,9 +124,8 @@ export default async function TraineeFollowUpsPage() {
                       </>
                     )}
                     {f.notes && (
-                      <div className={f.source === 'Trainee' ? 'col-span-2 md:col-span-3' : ''}>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Notes</p>
-                        <p className="text-sm text-slate-700 italic">"{f.notes}"</p>
+                      <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 relative before:absolute before:text-slate-200 before:font-serif before:text-4xl before:content-[''] before:left-2 before:-top-1">
+                        <p className="text-sm text-slate-700 italic relative z-10 pl-2">&quot;{f.notes}&quot;</p>
                       </div>
                     )}
                   </div>

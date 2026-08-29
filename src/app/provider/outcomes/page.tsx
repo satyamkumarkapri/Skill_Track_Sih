@@ -11,10 +11,6 @@ export default function ProviderOutcomesPage() {
   const [loading, setLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchTrainees();
-  }, []);
-
   const fetchTrainees = async () => {
     const result = await getProviderTrainees();
     if (result.success) {
@@ -22,6 +18,10 @@ export default function ProviderOutcomesPage() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchTrainees();
+  }, []);
 
   const handleUpdateOutcome = async (e: React.FormEvent<HTMLFormElement>, enrollmentId: string) => {
     e.preventDefault();

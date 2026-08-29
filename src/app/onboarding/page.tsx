@@ -38,8 +38,10 @@ export default function OnboardingPage() {
       setLoading(false);
     } else {
       toast.success("Profile verified successfully!");
-      // Force hard navigation to refresh middleware state
-      window.location.href = "/dashboard";
+      if (session.role === "admin") router.push("/dashboard");
+      else if (session.role === "provider") router.push("/provider/dashboard");
+      else if (session.role === "employer") router.push("/employer/dashboard");
+      else router.push("/trainee/dashboard");
     }
   };
 
@@ -62,7 +64,7 @@ export default function OnboardingPage() {
                 <option value="">Select Education Level</option>
                 <option value="high_school">10th / 12th Pass</option>
                 <option value="diploma">ITI / Diploma</option>
-                <option value="bachelor">Bachelor's Degree</option>
+                <option value="bachelor">Bachelor&apos;s Degree</option>
               </Select>
             </div>
             <div>
@@ -190,7 +192,7 @@ export default function OnboardingPage() {
           </div>
           <h1 className="text-2xl font-bold text-foreground">Welcome to SkillTrack, {session.name.split(' ')[0]}!</h1>
           <p className="text-muted-foreground mt-2">
-            Let's complete your profile. We need a few more details to set up your {session.role.replace(/_/g, ' ')} account.
+            Let&apos;s complete your profile. We need a few more details to set up your {session.role.replace(/_/g, ' ')} account.
           </p>
         </div>
 
@@ -205,9 +207,10 @@ export default function OnboardingPage() {
                   Complete Verification & Continue
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <p className="text-center text-xs text-muted-foreground mt-4">
-                  By completing this verification, you agree to the Government of Maharashtra's data sharing and retention policies.
-                </p>
+                <p className="text-muted-foreground text-sm">Please verify your registration details below.</p>
+                <div className="bg-slate-50 p-3 rounded text-sm text-slate-700 font-mono mt-2">
+                  ID: {session.trainee_id || "PENDING"} &bull; Aadhaar: Ending in {session.aadhaar ? session.aadhaar.slice(-4) : "****"}
+                </div>
               </div>
             </form>
           </CardContent>

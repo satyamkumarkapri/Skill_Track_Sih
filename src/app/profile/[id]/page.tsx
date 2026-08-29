@@ -179,7 +179,7 @@ export default async function TraineePublicProfilePage({ params }: { params: { i
                           {job.reason && (
                             <div className="col-span-2 pt-2 border-t border-slate-200 mt-1">
                               <span className="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">Reason</span>
-                              <span className="italic text-slate-600">"{job.reason}"</span>
+                              <span className="italic text-slate-600">&quot;{job.reason}&quot;</span>
                             </div>
                           )}
                         </div>
@@ -243,7 +243,7 @@ export default async function TraineePublicProfilePage({ params }: { params: { i
                           <span className="text-xs text-slate-400">{formatDate(log.date)}</span>
                         </div>
                         {log.notes && (
-                          <p className="text-sm text-slate-600 italic bg-slate-50 p-3 rounded-lg border border-slate-100 mt-3 relative before:absolute before:left-3 before:-top-2 before:text-slate-300 before:text-2xl before:content-['']">"{log.notes}"</p>
+                          <p className="text-sm text-slate-600 italic bg-slate-50 p-3 rounded-lg border border-slate-100 mt-3 relative before:absolute before:left-3 before:-top-2 before:text-slate-300 before:text-2xl before:content-['']">&quot;{log.notes}&quot;</p>
                         )}
                       </div>
                     ))}
