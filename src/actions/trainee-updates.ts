@@ -112,19 +112,19 @@ export async function endMyEmployment(reason: string) {
 
     const currentEmp = user.employmentData;
     
+    const historyEntry = {
+      ...currentEmp,
+      endDate: new Date().toISOString(),
+      status: "Ended",
+      reason: reason || "Left job"
+    };
+    
     await db.collection("users").updateOne(
       { _id: new ObjectId(session.userId) },
       { 
         $unset: { employmentData: "" },
-        $push: {
-          employmentHistory: {
-            ...currentEmp,
-            endDate: new Date().toISOString(),
-            status: "Ended",
-            reason: reason || "Left job"
-          }
-        }
-      }
+        $push: { employmentHistory: historyEntry }
+      } as Record<string, unknown>
     );
 
     revalidatePath("/trainee/employment");
