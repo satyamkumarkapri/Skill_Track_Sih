@@ -17,7 +17,7 @@ export default async function ProviderTraineesPage() {
         
         <div className="flex gap-2">
           {enrollments.length === 0 && (
-            <form action={seedMockEnrollments}>
+            <form action={async () => { "use server"; await seedMockEnrollments(); }}>
               <Button variant="outline" type="submit">
                 Generate Mock Data
               </Button>
