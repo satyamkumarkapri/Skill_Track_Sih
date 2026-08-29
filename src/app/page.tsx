@@ -96,8 +96,8 @@ function HeroBackgroundCarousel() {
           )}
         />
       ))}
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/60 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+      {/* Dark overlay for text readability - Enhanced gradient */}
+      <div className="absolute inset-0 bg-black/60 bg-gradient-to-r from-[#0f172a]/95 via-black/60 to-transparent" />
       
       {/* Navigation Dots */}
       <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-20">
@@ -158,46 +158,46 @@ function HeroSection() {
         
         {/* Left text content */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 text-sm border border-white/20 shadow-lg">
-            <span className="h-2 w-2 rounded-full bg-saffron" />
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 mb-6 text-sm border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.1)] animate-slide-up-fade opacity-0" style={{ animationDelay: "100ms" }}>
+            <span className="h-2.5 w-2.5 rounded-full bg-saffron animate-pulse-subtle" />
             Smart India Hackathon 2026 — SIH26135
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-lg animate-slide-up-fade opacity-0" style={{ animationDelay: "250ms" }}>
             Track Skills.{" "}
             <span className="text-saffron">Measure</span>{" "}
             Livelihoods.{" "}
-            <span className="text-india-green">Improve</span>{" "}
+            <span className="text-india-green drop-shadow-[0_0_15px_rgba(34,197,94,0.3)]">Improve</span>{" "}
             Outcomes.
           </h1>
 
-          <p className="mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl drop-shadow-md">
+          <p className="mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl drop-shadow-md animate-slide-up-fade opacity-0" style={{ animationDelay: "400ms" }}>
             SkillTrack Maharashtra connects training, employment and long-term livelihood outcomes
             to help decision-makers understand what happens after certification.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-10">
+          <div className="flex flex-col sm:flex-row gap-4 mt-10 animate-slide-up-fade opacity-0" style={{ animationDelay: "550ms" }}>
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-saffron text-white font-semibold rounded-lg hover:bg-saffron/90 transition-colors shadow-lg shadow-saffron/20"
+              className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-gradient-to-r from-saffron to-orange-600 text-white font-bold rounded-xl hover:from-saffron/90 hover:to-orange-500 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] hover:-translate-y-1"
             >
               Explore Demo Dashboard
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-white/10 backdrop-blur-sm text-white font-medium rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+              className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-white/10 backdrop-blur-md text-white font-medium rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/30 hover:border-white/50"
             >
               How It Works
             </Link>
           </div>
 
-          {/* Quick stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16 pt-8 border-t border-white/20">
-            {stats.map((stat) => (
-              <div key={stat.label} className="drop-shadow-md">
-                <p className="text-2xl sm:text-3xl font-bold">{stat.value}</p>
-                <p className="text-sm text-white/70 mt-1">{stat.label}</p>
+          {/* Quick stats - Glass widgets */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-8 border-t border-white/10 animate-slide-up-fade opacity-0" style={{ animationDelay: "700ms" }}>
+            {stats.map((stat, idx) => (
+              <div key={stat.label} className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-colors duration-300 card-hover">
+                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-white/60 mt-1 font-medium tracking-wide uppercase">{stat.label}</p>
               </div>
             ))}
           </div>

@@ -143,19 +143,22 @@ export function Sidebar({ role = "government_admin", userName = "Rajesh Deshmukh
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
+                "relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 overflow-hidden group",
                 isActive
                   ? "bg-white/15 text-white shadow-sm"
                   : "text-white/70 hover:text-white hover:bg-white/10",
                 collapsed && "justify-center px-2"
               )}
             >
-              <Icon className={cn("h-[18px] w-[18px] flex-shrink-0", isActive && "text-white")} />
+              {isActive && (
+                <span className="absolute left-0 top-0 bottom-0 w-1 bg-saffron rounded-r-full shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
+              )}
+              <Icon className={cn("h-[18px] w-[18px] flex-shrink-0 transition-transform duration-200 group-hover:scale-110", isActive && "text-white")} />
               {!collapsed && (
                 <>
                   <span className="flex-1">{item.label}</span>
                   {item.badge && (
-                    <span className="bg-saffron text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                    <span className="bg-saffron text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-[0_0_5px_rgba(249,115,22,0.5)]">
                       {item.badge}
                     </span>
                   )}
@@ -280,7 +283,7 @@ export function DashboardHeader({
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 lg:pl-64 h-16 bg-background/80 backdrop-blur-md border-b border-border/50 flex items-center justify-between px-4 sm:px-6 shadow-sm transition-all duration-300">
+    <header className="sticky top-0 z-30 lg:pl-64 h-16 glass-header flex items-center justify-between px-4 sm:px-6 transition-all duration-300">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
           <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-india-green/10 text-india-green border border-india-green/20 px-2.5 py-1 rounded-full">

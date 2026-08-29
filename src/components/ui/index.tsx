@@ -94,7 +94,7 @@ export function CardContent({
 }
 
 // ===== BUTTON =====
-type ButtonVariant = "default" | "secondary" | "outline" | "ghost" | "destructive" | "saffron" | "success";
+type ButtonVariant = "default" | "secondary" | "outline" | "ghost" | "destructive" | "saffron" | "success" | "premium";
 type ButtonSize = "default" | "sm" | "lg" | "icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -104,13 +104,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md",
+  premium: "bg-gradient-to-r from-primary to-blue-800 text-white hover:from-primary/90 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300",
+  saffron: "bg-gradient-to-r from-saffron to-orange-600 text-white hover:from-saffron/90 hover:to-orange-500 shadow-lg hover:shadow-xl transition-all duration-300",
+  success: "bg-gradient-to-r from-india-green to-emerald-700 text-white hover:from-india-green/90 hover:to-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300",
+  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-md",
   outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",
-  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-  saffron: "bg-saffron text-white hover:bg-saffron/90 shadow-sm",
-  success: "bg-india-green text-white hover:bg-india-green/90 shadow-sm",
 };
 
 const buttonSizes: Record<ButtonSize, string> = {
@@ -519,7 +520,7 @@ export function Input({
   return (
     <input
       className={cn(
-        "flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:border-primary/50 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}

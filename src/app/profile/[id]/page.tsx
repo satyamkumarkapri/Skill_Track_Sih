@@ -24,10 +24,10 @@ export default async function TraineePublicProfilePage({ params }: { params: { i
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Premium Header Banner */}
-      <div className="h-48 md:h-64 bg-gradient-to-r from-saffron via-orange-500 to-india-green relative overflow-hidden">
+      <div className="h-48 md:h-64 bg-gradient-to-r from-saffron via-orange-500 to-india-green relative overflow-hidden shadow-inner">
         {/* Abstract shapes for premium feel */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
-        <div className="absolute bottom-0 left-10 w-48 h-48 bg-white opacity-10 rounded-full blur-2xl translate-y-1/4"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 animate-pulse-subtle"></div>
+        <div className="absolute bottom-0 left-10 w-64 h-64 bg-white opacity-15 rounded-full blur-2xl translate-y-1/3 animate-float"></div>
         
         {/* Back navigation */}
         <div className="absolute top-6 left-6 z-10">
@@ -40,7 +40,7 @@ export default async function TraineePublicProfilePage({ params }: { params: { i
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 md:-mt-24 relative z-10 space-y-8">
         
         {/* Profile Identity Card */}
-        <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden card-hover animate-slide-up-fade">
           <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-end">
             <div className="p-1 bg-white rounded-full shadow-lg shrink-0">
               <Avatar name={trainee.name} size="lg" />
@@ -151,11 +151,11 @@ export default async function TraineePublicProfilePage({ params }: { params: { i
                   No past employment history records found.
                 </div>
               ) : (
-                <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-saffron/20 before:via-slate-300 before:to-transparent">
+                <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-saffron before:via-slate-300 before:to-transparent">
                   {empHistory.map((job: any, i: number) => (
-                    <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active animate-slide-up-fade" style={{ animationDelay: `${i * 150}ms` }}>
                       {/* Timeline Dot */}
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-slate-100 text-slate-400 shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors group-hover:bg-saffron group-hover:text-white">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-slate-100 text-slate-400 shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-saffron group-hover:text-white group-hover:shadow-[0_0_15px_rgba(249,115,22,0.5)]">
                         <Briefcase className="h-4 w-4" />
                       </div>
                       
