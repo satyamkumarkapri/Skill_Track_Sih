@@ -721,13 +721,9 @@ export default function LandingPage() {
       <LandingHeader />
       <main className="flex-1 w-full overflow-x-hidden">
         <HeroSection />
-        <ImpactMetricsSection />
-        <ProjectContextSection />
-        <ProblemSection />
         <HowItWorksSection />
         <FeaturesSection />
         <RolesSection />
-        <PrivacySection />
         <CTASection />
       </main>
       <Footer />
