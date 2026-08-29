@@ -134,25 +134,6 @@ export default function GovernmentDashboard() {
         </div>
       </div>
 
-      {/* ROW 4: Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300">
-          <SkillTrackAreaChart
-            data={enrollmentData}
-            title="TRAINING ENROLLMENTS"
-            description="(Last 6 Months)"
-            color="#f97316"
-          />
-        </div>
-        <div className="bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl shadow-sm p-4 card-hover transition-all duration-300">
-          <SkillTrackAreaChart
-            data={placementData}
-            title="PLACEMENT TRENDS"
-            description="(Last 6 Months)"
-            color="#10b981"
-          />
-        </div>
-      </div>
 
       {/* ROW 4: 4 Bar Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

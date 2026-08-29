@@ -3,6 +3,7 @@
 import { getDb } from "@/lib/mongodb";
 import { verifySession } from "@/lib/session";
 import { revalidatePath } from "next/cache";
+import { ObjectId } from "mongodb";
 
 export async function getTraineeProfile() {
   try {
@@ -100,7 +101,7 @@ export async function enrollInCourse(courseId: string) {
     const db = await getDb();
 
     // Verify course exists
-    const course = await db.collection("courses").findOne({ _id: new (require("mongodb").ObjectId)(courseId) });
+    const course = await db.collection("courses").findOne({ _id: new ObjectId(courseId) });
     if (!course) return { error: "Course not found" };
 
     // Verify not already enrolled
@@ -129,7 +130,7 @@ export async function enrollInCourse(courseId: string) {
 
     // Increment course enrollment count
     await db.collection("courses").updateOne(
-      { _id: new (require("mongodb").ObjectId)(courseId) },
+      { _id: new ObjectId(courseId) },
       { $inc: { enrolledTrainees: 1 } }
     );
 
@@ -154,7 +155,7 @@ export async function updateTraineeProfile(data: any) {
     
     // Update the user record
     await db.collection("users").updateOne(
-      { _id: new (require("mongodb").ObjectId)(session.userId) },
+      { _id: new ObjectId(session.userId) },
       { 
         $set: { 
           name: data.name,

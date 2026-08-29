@@ -32,7 +32,7 @@ export default function TermsOfServicePage() {
             <section>
               <h2 className="text-xl font-bold text-slate-900 mb-3">2. User Responsibilities</h2>
               <p className="text-slate-600 leading-relaxed">
-                Users are responsible for maintaining the confidentiality of their login credentials. Any activity conducted under a user's account is their sole responsibility. Employers and Training Providers must ensure the accuracy of the employment and certification data they submit.
+                Users are responsible for maintaining the confidentiality of their login credentials. Any activity conducted under a user&apos;s account is their sole responsibility. Employers and Training Providers must ensure the accuracy of the employment and certification data they submit.
               </p>
             </section>
 
