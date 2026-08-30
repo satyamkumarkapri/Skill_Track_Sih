@@ -169,7 +169,7 @@ function HeroBackgroundCarousel() {
         />
       ))}
       {/* Dark overlay for text readability - Enhanced gradient */}
-      <div className="absolute inset-0 bg-black/60 bg-gradient-to-r from-[#0f172a]/95 via-black/60 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/80 via-black/35 to-transparent" />
       
       {/* Navigation Dots */}
       <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-20">
