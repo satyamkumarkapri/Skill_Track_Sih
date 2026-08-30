@@ -88,14 +88,6 @@ function LandingHeader() {
 
           {/* RIGHT: Actions */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <DemoBadge />
-            <Link
-              href="/dashboard"
-              className="hidden md:inline-flex items-center gap-1.5 h-9 px-4 border border-primary text-primary text-sm font-semibold rounded-lg hover:bg-primary/5 transition-colors"
-            >
-              <BarChart3 className="h-4 w-4" />
-              <span>View Demo</span>
-            </Link>
             <Link
               href="/login"
               className="inline-flex items-center gap-1.5 h-9 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
