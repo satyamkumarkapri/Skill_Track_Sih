@@ -53,13 +53,6 @@ function LandingHeader() {
 
   return (
     <>
-      {/* Announcement Bar */}
-      <div className="w-full bg-gradient-to-r from-primary via-orange-500 to-india-green text-white text-xs font-semibold text-center py-2 px-4 flex items-center justify-center gap-2">
-        <span className="hidden sm:inline">🏆</span>
-        <span>Smart India Hackathon 2026 — Problem Statement SIH26135 — SkillTrack Maharashtra</span>
-        <span className="hidden sm:inline">🏆</span>
-      </div>
-
       {/* Main Navbar */}
       <header className={cn(
         "sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border transition-shadow duration-300",
