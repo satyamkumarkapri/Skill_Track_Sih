@@ -34,29 +34,36 @@ import { getMongoDBKPIs } from "@/actions/analytics";
 // ===== LANDING HEADER =====
 function LandingHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-sm">
+      <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
+        {/* LEFT: Logo */}
+        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center shadow-md">
             <Target className="h-5 w-5 text-white" />
           </div>
           <div>
-            <span className="text-base font-bold text-foreground">SkillTrack Maharashtra</span>
+            <span className="text-base font-bold text-foreground">SkillTrack</span>
+            <span className="text-base font-bold text-primary ml-1">Maharashtra</span>
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="#problem" className="text-sm text-muted-foreground hover:text-foreground transition-colors">The Problem</Link>
-          <Link href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How It Works</Link>
-          <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</Link>
-          <Link href="#privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
+        {/* CENTER: Nav Links */}
+        <nav className="hidden md:flex items-center gap-1">
+          <Link href="#problem" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">The Problem</Link>
+          <Link href="#how-it-works" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">How It Works</Link>
+          <Link href="#features" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Features</Link>
+          <Link href="#roles" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Who Uses It</Link>
+          <Link href="/privacy" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Privacy</Link>
+          <Link href="/terms" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Terms</Link>
+          <Link href="#privacy" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Data Security</Link>
         </nav>
 
-        <div className="flex items-center gap-3">
+        {/* RIGHT: CTA */}
+        <div className="flex items-center gap-3 flex-shrink-0">
           <DemoBadge />
           <Link
             href="/login"
-            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-4 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
           >
             Login
             <ArrowRight className="h-4 w-4" />
