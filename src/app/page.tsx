@@ -33,43 +33,124 @@ import { getMongoDBKPIs } from "@/actions/analytics";
 
 // ===== LANDING HEADER =====
 function LandingHeader() {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navLinks = [
+    { label: "The Problem", href: "#problem" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Features", href: "#features" },
+    { label: "Impact", href: "#how-it-works" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Contact", href: "mailto:support@skilltrack.gov.in", external: true },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-sm">
-      <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* LEFT: Logo */}
-        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center shadow-md">
-            <Target className="h-5 w-5 text-white" />
-          </div>
-          <div>
-            <span className="text-base font-bold text-foreground">SkillTrack</span>
-            <span className="text-base font-bold text-primary ml-1">Maharashtra</span>
-          </div>
-        </Link>
-
-        {/* CENTER: Nav Links */}
-        <nav className="hidden md:flex items-center gap-1">
-          <Link href="#problem" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">The Problem</Link>
-          <Link href="#how-it-works" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">How It Works</Link>
-          <Link href="#features" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Features</Link>
-          <Link href="/dashboard" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Dashboard</Link>
-          <Link href="/profile/demo" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Trainee Profile</Link>
-          <a href="mailto:support@skilltrack.gov.in" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Contact</a>
-        </nav>
-
-        {/* RIGHT: CTA */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <DemoBadge />
-          <Link
-            href="/login"
-            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
-          >
-            Login
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+    <>
+      {/* Announcement Bar */}
+      <div className="w-full bg-gradient-to-r from-primary via-orange-500 to-india-green text-white text-xs font-semibold text-center py-2 px-4 flex items-center justify-center gap-2">
+        <span className="hidden sm:inline">🏆</span>
+        <span>Smart India Hackathon 2026 — Problem Statement SIH26135 — SkillTrack Maharashtra</span>
+        <span className="hidden sm:inline">🏆</span>
       </div>
-    </header>
+
+      {/* Main Navbar */}
+      <header className={cn(
+        "sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border transition-shadow duration-300",
+        scrolled ? "shadow-md" : "shadow-sm"
+      )}>
+        <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
+
+          {/* LEFT: Logo */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center shadow-md">
+              <Target className="h-5 w-5 text-white" />
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="text-base font-extrabold text-slate-900 tracking-tight">SkillTrack</span>
+              <span className="text-[10px] font-bold text-primary uppercase tracking-widest">Maharashtra</span>
+            </div>
+          </Link>
+
+          {/* CENTER: Nav Links (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-0.5">
+            {navLinks.map((link) => (
+              link.external ? (
+                <a key={link.label} href={link.href} className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} href={link.href} className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">
+                  {link.label}
+                </Link>
+              )
+            ))}
+          </nav>
+
+          {/* RIGHT: Actions */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <DemoBadge />
+            <Link
+              href="/dashboard"
+              className="hidden md:inline-flex items-center gap-1.5 h-9 px-4 border border-primary text-primary text-sm font-semibold rounded-lg hover:bg-primary/5 transition-colors"
+            >
+              <BarChart3 className="h-4 w-4" />
+              <span>View Demo</span>
+            </Link>
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-1.5 h-9 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+            >
+              Login
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            {/* Mobile menu toggle */}
+            <button
+              className="lg:hidden h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-colors ml-1"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                <svg className="h-5 w-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              ) : (
+                <svg className="h-5 w-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-4 space-y-1 shadow-lg animate-fade-in-up">
+            {navLinks.map((link) => (
+              link.external ? (
+                <a key={link.label} href={link.href} className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary hover:bg-primary/5 px-3 py-2.5 rounded-lg transition-all" onClick={() => setMobileOpen(false)}>
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} href={link.href} className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary hover:bg-primary/5 px-3 py-2.5 rounded-lg transition-all" onClick={() => setMobileOpen(false)}>
+                  {link.label}
+                </Link>
+              )
+            ))}
+            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+              <Link href="/dashboard" className="flex items-center justify-center gap-2 h-10 border border-primary text-primary text-sm font-semibold rounded-lg hover:bg-primary/5 transition-colors" onClick={() => setMobileOpen(false)}>
+                <BarChart3 className="h-4 w-4" /> View Demo
+              </Link>
+              <Link href="/login" className="flex items-center justify-center gap-2 h-10 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors" onClick={() => setMobileOpen(false)}>
+                Login <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
 
