@@ -52,10 +52,9 @@ function LandingHeader() {
           <Link href="#problem" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">The Problem</Link>
           <Link href="#how-it-works" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">How It Works</Link>
           <Link href="#features" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Features</Link>
-          <Link href="#roles" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Who Uses It</Link>
-          <Link href="/privacy" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Privacy</Link>
-          <Link href="/terms" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Terms</Link>
-          <Link href="#privacy" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Data Security</Link>
+          <Link href="/dashboard" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Dashboard</Link>
+          <Link href="/profile/demo" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Trainee Profile</Link>
+          <a href="mailto:support@skilltrack.gov.in" className="text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg transition-all">Contact</a>
         </nav>
 
         {/* RIGHT: CTA */}
